@@ -11,6 +11,9 @@
 |
 */
 
+// Routes for user registration, login, logout, and password reset
+Auth::routes();
+
 Route::get('/', 'HomeController@index')->name('home');
 
 //Route::get('/', function () {
