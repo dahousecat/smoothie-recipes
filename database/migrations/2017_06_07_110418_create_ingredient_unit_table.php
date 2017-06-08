@@ -14,9 +14,9 @@ class CreateIngredientUnitTable extends Migration
     public function up()
     {
         Schema::create('ingredient_unit', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('ingredient_id')->unsigned();
             $table->integer('unit_id')->unsigned();
-            $table->timestamps();
         });
     }
 

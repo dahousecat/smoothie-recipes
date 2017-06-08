@@ -6,6 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ingredient extends Model
 {
+    protected $fillable = [
+        'name',
+        'description',
+        'image',
+        'user_id',
+    ];
+
     /**
      * The units that belong to the ingredient.
      */
@@ -15,10 +22,11 @@ class Ingredient extends Model
     }
 
     /**
-     * The units that belong to the ingredient.
+     * The attributes that belong to the ingredient.
      */
-    public function rows()
+    public function attributes()
     {
-        return $this->belongsToMany('App\Row');
+        return $this->belongsToMany('App\Attribute');
     }
+
 }

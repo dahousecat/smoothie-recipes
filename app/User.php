@@ -26,4 +26,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * The recipes that belong to the user.
+     */
+    public function recipes()
+    {
+        return $this->hasMany('App\Recipe');
+    }
+
+    /**
+     * The ingredients that belong to the user.
+     */
+    public function ingredients()
+    {
+        return $this->hasMany('App\Ingredient');
+    }
 }

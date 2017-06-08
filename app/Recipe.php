@@ -6,6 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Recipe extends Model
 {
+    protected $fillable = [
+        'name',
+        'description',
+        'image',
+        'user_id',
+    ];
+
     /**
      * The steps that belong to the recipe.
      */
@@ -20,5 +27,13 @@ class Recipe extends Model
     public function rows()
     {
         return $this->hasMany('App\Row');
+    }
+
+    /**
+     * Get the user that owns the recipe.
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 }
