@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,7 +21,7 @@ class Row extends Model
      */
     public function ingredient()
     {
-        return $this->belongsTo('App\Ingredient');
+        return $this->belongsTo('App\Models\Ingredient');
     }
 
     /**
@@ -29,7 +29,7 @@ class Row extends Model
      */
     public function recipe()
     {
-        return $this->belongsTo('App\Recipe');
+        return $this->belongsTo('App\Models\Recipe');
     }
 
     /**
@@ -37,7 +37,7 @@ class Row extends Model
      */
     public function unit()
     {
-        return $this->belongsTo('App\Unit');
+        return $this->belongsTo('App\Models\Unit');
     }
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -32,7 +32,7 @@ class User extends Authenticatable
      */
     public function recipes()
     {
-        return $this->hasMany('App\Recipe');
+        return $this->hasMany('App\Models\Recipe');
     }
 
     /**
@@ -40,6 +40,6 @@ class User extends Authenticatable
      */
     public function ingredients()
     {
-        return $this->hasMany('App\Ingredient');
+        return $this->hasMany('App\Models\Ingredient');
     }
 }

@@ -16,6 +16,12 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
+// Recipe routes (index, create, store, etc) for items
+Route::resource('recipe', 'RecipeController');
+
+// Ingredient routes (index, create, store, etc) for items
+Route::resource('ingredient', 'IngredientController');
+
 //Route::get('/', function () {
 //    return view('welcome');
 //});

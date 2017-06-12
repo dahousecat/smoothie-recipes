@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Recipe;
+use App\Models\Ingredient;
+use App\Models\Recipe;
+use App\Models\Unit;
 use Illuminate\Http\Request;
 
 class RecipeController extends Controller
@@ -24,18 +26,49 @@ class RecipeController extends Controller
      */
     public function create()
     {
-        //
+        $pantry_ingredients = Ingredient::all();
+        $units = Unit::getAllKeyed();
+        return view('recipes.create', [
+            'pantry_ingredients' => $pantry_ingredients,
+            'units' => $units,
+        ]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created recipe in the DB.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param CreateFormRequest $request
+     * @return $this|\Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(CreateFormRequest $request)
     {
-        //
+        $url = $request->input('url');
+        $user = auth()->user();
+
+        // Attempt to create a new item from the provided URL
+        $item = ItemFactory::create([
+            'user_id' => $user->id,
+            'details' => ['url' => $url]
+        ]);
+
+        // If a valid item type couldn't be found, don't save to the db
+        if (empty($item->type)) {
+            return redirect()
+                ->route('item.create')
+                ->withInput()
+                ->withErrors(['url' => CreateFormRequest::$messages['url.invalid']]);
+        }
+
+        // If everything looks fine, redirect to home where the item should
+        // have been added to the queue
+        if ($item->save()) {
+            return redirect()->route('home');
+        }
+
+        return redirect()
+            ->route('item.create')
+            ->withInput()
+            ->withErrors(['url' => CreateFormRequest::$messages['url.invalid']]);
     }
 
     /**

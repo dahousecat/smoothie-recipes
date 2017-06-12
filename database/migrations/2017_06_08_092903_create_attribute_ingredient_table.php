@@ -17,6 +17,7 @@ class CreateAttributeIngredientTable extends Migration
             $table->increments('id');
             $table->integer('ingredient_id')->unsigned();
             $table->integer('attribute_id')->unsigned();
+            $table->float('value', 8, 2)->unsigned();
         });
     }
 

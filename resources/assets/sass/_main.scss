@@ -1,0 +1,18 @@
+.drop-zone {
+  background-color: grey;
+  min-height: 2rem;
+
+  &.empty {
+    padding: 2rem;
+    text-align: center;
+
+    &::after {
+      content: 'Drop here';
+      color: white;
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}

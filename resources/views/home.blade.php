@@ -11,7 +11,7 @@
 
                     <div class="panel-body">
                         <p>Search smoothie recipes</p>
-                        <p>Create smoothie recipe</p>
+                        <p><a href="recipe/create">Create smoothie recipe</a></p>
                     </div>
                 </div>
             </div>

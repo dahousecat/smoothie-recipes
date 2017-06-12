@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,6 +17,6 @@ class Attribute extends Model
      */
     public function ingredients()
     {
-        return $this->belongsToMany('App\Ingredient');
+        return $this->belongsToMany('App\Models\Ingredient');
     }
 }

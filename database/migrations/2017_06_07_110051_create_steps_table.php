@@ -18,7 +18,7 @@ class CreateStepsTable extends Migration
             $table->integer('recipe_id')->unsigned();
             $table->integer('delta')->unsigned();
             $table->string('text');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

@@ -16,3 +16,6 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Ingredient routes (index, create, store, etc) for items
+Route::resource('ingredient', 'Api\IngredientApiController');

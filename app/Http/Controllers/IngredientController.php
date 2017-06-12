@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Ingredient;
+use App\Unit;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateIngredientFormRequest;
 
 class IngredientController extends Controller
 {
@@ -28,14 +30,39 @@ class IngredientController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created ingredient in the DB.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param CreateFormRequest $request
+     * @return $this|\Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(CreateIngredientFormRequest $request)
     {
-        //
+        $user = auth()->user();
+
+        $ingredient = new Ingredient;
+
+        $ingredient->name = $request->input('name');
+        $ingredient->description = $request->input('description');
+        $ingredient->image = $request->input('image');
+        $ingredient->user_id = $user->id;
+
+        if(!$ingredient->save()) {
+            return redirect()
+                ->route('recipe.create')
+                ->withInput()
+                ->withErrors(['url' => CreateFormRequest::$messages['url.invalid']]);
+        }
+
+        // Create ingredient unit relationships
+        foreach(Unit::getTypes() as $type) {
+            if($request->input('unit_' . $type)) {
+                $units = Unit::loadByType($type);
+                $ingredient->units()->saveMany($units);
+            }
+        }
+
+        return redirect()->route('recipe.create');
+
     }
 
     /**

@@ -1,0 +1,42 @@
+.ingredients-list {
+  margin: 0;
+  padding: 0;
+
+  li {
+    display: block;
+  }
+}
+
+.ingredient {
+  margin: 1rem;
+
+  .form-control {
+    margin-right: 1rem;
+  }
+
+  .amount {
+    width: 6rem;
+  }
+
+  .unit {
+    width: 10rem;
+  }
+
+  .name {
+    line-height: 2.4;
+  }
+}
+
+#pantry_ingredients {
+  li {
+    max-width: 20rem;
+  }
+}
+
+#recipe_ingredients {
+
+
+  .recipe-row-form {
+    display: flex;
+  }
+}
