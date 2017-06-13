@@ -66,22 +66,28 @@ $(document).ready(function () {
     $('.ingredients-list, .ingredients-list li').disableSelection();
 
 
-    $('.create-ingredient-form').on('submit',function(e){
-        e.preventDefault(e);
-
-        $.ajax({
-            type: 'POST',
-            url: '/api/ingredient',
-            data: $(this).serialize(),
-            dataType: 'json',
-            success: function(data){
-                console.log(data);
-            },
-            error: function(data){
-
-            }
-        });
-    });
+    // $('.create-ingredient-form').on('submit',function(e){
+    //     e.preventDefault(e);
+    //
+    //     $.ajaxSetup({
+    //         headers: {
+    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //         }
+    //     });
+    //
+    //     $.ajax({
+    //         type: 'POST',
+    //         url: '/api/ingredient',
+    //         data: $(this).serialize(),
+    //         dataType: 'json',
+    //         success: function(data){
+    //             console.log(data);
+    //         },
+    //         error: function(data){
+    //
+    //         }
+    //     });
+    // });
 
 
 });

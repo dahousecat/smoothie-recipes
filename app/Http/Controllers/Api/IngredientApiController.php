@@ -31,6 +31,7 @@ class IngredientApiController //extends JsonApiController
 
         $user = auth()->user();
 
+//        d($_SESSION);
         d($user);
         die();
 

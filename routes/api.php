@@ -18,4 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 // Ingredient routes (index, create, store, etc) for items
-Route::resource('ingredient', 'Api\IngredientApiController');
+//Route::resource('ingredient', 'Api\IngredientApiController');
+//Route::resource('ingredient', 'Api\IngredientApiController')->middleware('web');
+//Route::middleware('web')->resource('ingredient', 'Api\IngredientApiController');
