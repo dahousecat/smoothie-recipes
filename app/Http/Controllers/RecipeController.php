@@ -26,11 +26,14 @@ class RecipeController extends Controller
      */
     public function create()
     {
+        $user = auth()->user();
+
         $pantry_ingredients = Ingredient::all();
         $units = Unit::getAllKeyed();
         return view('recipes.create', [
             'pantry_ingredients' => $pantry_ingredients,
             'units' => $units,
+            'api_token' => $user->api_token,
         ]);
     }
 

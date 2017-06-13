@@ -19,5 +19,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // Ingredient routes (index, create, store, etc) for items
 //Route::resource('ingredient', 'Api\IngredientApiController');
-//Route::resource('ingredient', 'Api\IngredientApiController')->middleware('web');
 //Route::middleware('web')->resource('ingredient', 'Api\IngredientApiController');
+//Route::middleware('auth:api')->resource('ingredient', 'Api\IngredientApiController');
+
+// Ingredient routes (index, create, store, etc) for items
+
+
+Route::group(['middleware' => 'auth:api'], function () {
+//    Route::post('/short', 'UrlMapperController@store');
+    Route::resource('ingredient', 'Api\IngredientApiController');
+});

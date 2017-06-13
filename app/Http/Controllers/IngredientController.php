@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Ingredient;
-use App\Unit;
+use App\Models\Ingredient;
+use App\Models\Unit;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateIngredientFormRequest;
+use Illuminate\Auth\Access\Response;
 
 class IngredientController extends Controller
 {
@@ -47,10 +48,14 @@ class IngredientController extends Controller
         $ingredient->user_id = $user->id;
 
         if(!$ingredient->save()) {
-            return redirect()
-                ->route('recipe.create')
-                ->withInput()
-                ->withErrors(['url' => CreateFormRequest::$messages['url.invalid']]);
+//            return redirect()
+//                ->route('recipe.create')
+//                ->withInput()
+//                ->withErrors(['url' => CreateFormRequest::$messages['url.invalid']]);
+//            return Response::json([
+//                'error' => 'Not saved'
+//            ]);
+            die(json_encode(['error' => 'Not saved']));
         }
 
         // Create ingredient unit relationships
@@ -61,7 +66,13 @@ class IngredientController extends Controller
             }
         }
 
-        return redirect()->route('recipe.create');
+//        return redirect()->route('recipe.create');
+
+        die($ingredient->toJson());
+
+//        return Response::json([
+//            'ingredient' => $ingredient->toJson()
+//        ])->header('Content-Type', 'application/json');
 
     }
 

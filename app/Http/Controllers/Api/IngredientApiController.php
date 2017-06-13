@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Input;
 use Response;
 
 use App\Unit;
+use Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateIngredientFormRequest;
 
@@ -16,20 +17,21 @@ use Neomerx\JsonApi\Document\Error;
 use Neomerx\JsonApi\Document\Link;
 use Neomerx\JsonApi\Encoder\Encoder;
 
-class IngredientApiController //extends JsonApiController
+class IngredientApiController extends Controller //extends JsonApiController
 {
     /**
      * Store an ingredient in the DB
      */
     public function store() {
 
-        if (Session::token() !== Input::get('_token')) {
-            //return Response::json(['error' => 'Unauthorized attempt to create ingredients']);
-            $error = new Error('Unauthorized attempt to create ingredients');
-            Encoder::instance()->encodeError($error);
-        }
+//        if (Session::token() !== Input::get('_token')) {
+//            //return Response::json(['error' => 'Unauthorized attempt to create ingredients']);
+//            $error = new Error('Unauthorized attempt to create ingredients');
+//            Encoder::instance()->encodeError($error);
+//        }
 
-        $user = auth()->user();
+//        $user = auth()->user();
+        $user = Auth::guard('api')->user();
 
 //        d($_SESSION);
         d($user);

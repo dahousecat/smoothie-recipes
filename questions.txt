@@ -1,0 +1,1 @@
+Why can't I get auth user when I use api route?

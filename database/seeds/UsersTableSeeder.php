@@ -15,6 +15,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'Felix',
             'email' => 'dahousecat@gmail.com',
             'password' => bcrypt('password'),
+            'api_token' => str_random(60),
         ]);
     }
 }

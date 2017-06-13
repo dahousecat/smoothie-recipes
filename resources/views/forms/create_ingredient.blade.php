@@ -1,6 +1,8 @@
 
 {!! Form::open(['route' => 'ingredient.store', 'class' => 'form-horizontal create-ingredient-form']) !!}
 
+{{ Form::hidden('api_token', $api_token) }}
+
 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
     <label class="col-md-4 control-label">Name</label>
 
