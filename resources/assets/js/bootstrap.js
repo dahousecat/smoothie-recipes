@@ -9,9 +9,10 @@ window._ = require('lodash');
 
 try {
     window.$ = window.jQuery = require('jquery');
-    require('jquery-ui');
+    require('../../../node_modules/jquery-ui-bundle/jquery-ui.min');
 
     require('bootstrap-sass');
+
 } catch (e) {}
 
 /**
